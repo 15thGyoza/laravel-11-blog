@@ -4,7 +4,7 @@
     <div class="bg-light p-3 p-sm-5 rounded">
         <h1>Hello 👋</h1>
         <p class="lead">
-            你现在所看到的是 <a href="https://lustormstout.com">LuStormstout's blog</a> 的示例项目主页。
+            你现在所看到的是 <a href="https://lustormstout.com">Lirundian's blog</a> 的示例项目主页。
         </p>
         <p>
             一切，将从这里开始。
