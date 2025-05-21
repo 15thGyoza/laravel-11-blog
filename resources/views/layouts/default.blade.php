@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>@yield('title', 'LuStormstout')</title>
+    <title>@yield('title', 'Lirundian')</title>
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 <body>
