@@ -38,7 +38,7 @@ class UsersController extends Controller
      */
     public function index(): View
     {
-        $users = User::paginate($this->perPage); // 22:04
+        $users = User::paginate($this->perPage);
         return view('users.index', compact('users'));
     }
 
@@ -60,7 +60,9 @@ class UsersController extends Controller
      */
     public function show(User $user): View
     {
-        return view('users.show', compact('user'));
+        $statuses = $user->statuses()->orderBy('created_at', 'desc')->paginate($this->perPage);
+
+        return view('users.show', compact('user', 'statuses'));
     }
 
     /**
@@ -192,5 +194,31 @@ class UsersController extends Controller
 
         auth()->login($user);
         return redirect()->route('users.show', $user)->with('success', 'User activated successfully.');
+    }
+
+    /**
+     * Show the list of users that the user is following.
+     *
+     * @param User $user
+     * @return View
+     */
+    public function followings(User $user): View
+    {
+        $users = $user->followings()->paginate(30);
+        $title = $user->name . ' 关注的人';
+        return view('users.show_follow', compact('users', 'title'));
+    }
+
+    /**
+     * Show the list of users that are following the user.
+     *
+     * @param User $user
+     * @return View
+     */
+    public function followers(User $user): View
+    {
+        $users = $user->followers()->paginate(30);
+        $title = $user->name . ' 的粉丝';
+        return view('users.show_follow', compact('users', 'title'));
     }
 }

@@ -259,12 +259,164 @@
     ```bash
     php artisan ide-helper:models -W
     ```
-  
+
 - 开发完成用户激活功能
     ```bash
     git add -A
     git commit -m "完成用户激活功能"
     git checkout main
     git merge account-activation-password-resets
+    git push
+    ```
+
+## 📅 2025/05/16
+
+- 创建一个新的分支
+    ```bash
+    git checkout main
+    git checkout -b user-statuses
+    ```
+
+- 创建 statuses 表的数据迁移、模型
+    ```bash
+    php artisan make:migration create_statuses_table --create="statuses"
+    php artisan migrate
+    php artisan make:model Status
+    ```
+
+- 提交代码
+    ```bash
+    git add -A
+    git commit -m "创建 statuses 表的数据迁移、模型"
+    ```
+
+- 大家要记住, 因为我们在使用 ide-helper 生成模型的注释, 所以在模型的属性发生变更的时候, 还有创建了新的模型的时候...,
+  去运行一下这个命令
+    ```bash
+    php artisan ide-helper:models
+    ```
+- 创建 StatusFactory
+    ```bash
+    php artisan make:factory StatusFactory
+    ```
+
+- 创建 StatusesTableSeeder, 在编辑完成之后需要去在 [DatabaseSeeder.php](database/seeders/DatabaseSeeder.php) 文件中调用
+    ```bash
+    php artisan make:seeder StatusesTableSeeder
+    ```
+
+- 运行数据填充
+    ```bash
+    php artisan migrate:fresh --seed
+    ```
+
+- 提交代码
+    ```bash
+    git add -A
+    git commit -m "用户动态列表"
+    ```
+
+- 生成 StatusesController
+    ```bash
+    php artisan make:controller StatusesController
+    ```
+
+- 用户可以发布动态
+    ```bash
+    git add -A
+    git commit -m "完成用户发布动态"
+    ```
+
+## 📅 2025/05/19
+
+- 切换到 user-statuses 分支继续开发
+    ```bash
+    git checkout user-statuses
+    ```
+
+- 完成首页微博列表
+    ```bash
+    git add -A
+    git commit -m "完成首页微博列表"
+    ```
+
+- 完成微博的删除功能
+    ```bash
+    git add -A
+    git commit -m "完成微博的删除功能"
+    ```
+
+- 开发完微博相关功能后, 切换到 main 分支, 将 user-statuses 分支合并到主分支, 并推送到远程仓库
+    ```bash
+    git checkout main
+    git merge user-statuses
+    git push
+    ```
+
+- 创建一个新的分支来开发粉丝关系
+    ```bash
+    git checkout main
+    git checkout -b following-users
+    ```
+
+- 创建关注关系的 migration 文件
+    ```bash
+    php artisan make:migration create_followers_table --create="followers"
+    ```
+
+- 运行数据填充
+    ```bash
+    php artisan migrate
+    ```
+
+- 运行 ide-helper
+    ```bash
+    php artisan ide-helper:models -W
+    ```
+
+- 完成创建粉丝数据表
+    ```bash
+    git add -A
+    git commit -m "创建粉丝数据表"
+    ```
+
+- 创建 FollowersTableSeeder
+    ```bash
+    php artisan make:seeder FollowersTableSeeder
+    ```
+
+- 运行数据填充
+    ```bash
+    php artisan migrate:fresh --seed
+    ```
+
+- 完成社交统计信息, 修复页面样式
+    ```bash
+    git add -A
+    git commit -m "完成社交统计信息, 修复页面样式"
+    ```
+
+- 关注和粉丝列表页面
+    ```bash
+    git add -A
+    git commit -m "关注和粉丝列表页面"
+    ```
+  
+- 创建 FollowersController
+    ```bash
+    php artisan make:controller FollowersController
+    ```
+  
+- 完成关注和取消关注功能
+    ```bash
+    git add -A
+    git commit -m "完成关注和取消关注功能"
+    ```
+- 完成首页用户和关注的人的动态流
+    ```bash
+    git add -A
+    git commit -m "完成首页用户和关注的人的动态流"
+    git checkout main
+    git merge following-users
     git push
     ```
